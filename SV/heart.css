@@ -1,0 +1,205 @@
+html, body {
+  height: 100%;          /* asegura que ocupen toda la ventana */
+  margin: 0;             /* elimina márgenes por defecto */
+  padding: 0;
+}
+
+body {
+  display: flex; /* activa flexbox */
+  justify-content: center; /* centra horizontalmente */
+  align-items: center; /* centra verticalmente */
+  margin: 0;
+  padding: 0;
+  background-image: url("img/fondo.jpg"); /* tu textura o ilustración */
+  background-repeat: no-repeat;
+  background-size: cover;    /* la imagen cubre toda la pantalla */
+  background-position: center;
+  font-family: 'Playfair Display', serif; /* tipografía elegante */
+}
+
+
+/* Sobre */
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: 50px auto; 
+  perspective: 800px;
+}
+
+/* Bolsillo */
+.pocket {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 3px solid #030102;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* Solapa cerrada */
+.flap {
+  position: absolute;
+  top: -1%;
+  left: 1%;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 100px solid #7c796d;
+  z-index: 2;
+  transition: transform 1s ease;
+  transform-origin: top;
+  filter: drop-shadow(0 0 0 #841d5b);
+  transform-origin: top center;
+}
+
+.flap-open {
+  position: absolute;
+  top: -50.5%;
+  left: -0.25%;
+  width: 0;
+  height: 0;
+  border-left: 155px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 100px solid #7c796d; /* invertido para simular abierto */
+  z-index: 2;
+  opacity: 0; /* empieza invisible */
+  transition: opacity 0.8s ease;
+  filter: drop-shadow(0 0 0 rgb(0, 0, 0));
+}
+
+
+/* Sello */
+.seal {
+  position: absolute;
+  top: 58px;
+  left: 133px;
+  font-size: 50px;
+  color: #000000;
+  z-index: 3; 
+}
+
+
+/* Carta oculta */
+.letter {
+  position: absolute;
+  top: 50%;                     
+  left: 50%;                    
+  transform: translate(-50%, -50%); 
+  width: 68%;                   
+  height: 150%;                
+  background: white;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2;                  
+  opacity: 0;                   
+  transition: opacity 0.8s ease, transform 1s ease;
+  border: 2px solid #000000;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Estado abierto tipo libro */
+.letter.open {
+  transform: translate(-50%, -50%) rotateY(-180deg);
+}
+
+
+/* Tarjeta interna */
+.card-front h1 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 20px;
+  color: #000000;
+  margin: 10px 0;
+}
+
+.card-front h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 43px;
+  color: #000000;
+  margin: 40px 0;
+}
+
+
+.heart {
+  color: #6b4e2ee3;
+  font-size: 40px;
+}
+
+.ornament-f {
+  position: absolute;
+  bottom: 10px;   /* distancia desde abajo */
+  right: 10px;    /* distancia desde la derecha */
+  font-size: 25px;
+  color: rgb(0, 0, 0); 
+}
+
+
+.card-front {
+  display: block;
+  user-select: none; /* evita selección de texto */
+  pointer-events: none; /* evita que el clic active el cursor */
+}
+
+
+.card-inside {
+  position: absolute; /* necesario para que las imágenes se posicionen dentro */
+  display: none; /* oculto al inicio */
+  transform: rotateY(180deg); /* compensa el giro de la carta */
+  user-select: none; /* evita selección de texto */
+  pointer-events: none; /* evita que el clic active el cursor */
+  height: 40%;
+  width: 60%;
+  padding: 20px;
+  text-align: jus;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: url("img/flor.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: contain;
+  background-size: 35%;
+}
+
+/* Título */
+.card-inside h1 {
+  font-family: "Great Vibes", cursive;
+  font-size: 15px; 
+  color: #6b4e2ee3;
+  margin: 0;
+}
+
+/* Párrafos */
+.card-inside p {
+  font-family: "Playfair", serif;
+  font-size: 12.2px;
+  color: #333;
+  text-align: justify;
+  margin: 5px 0;
+}
+
+
+
+/* Cuando la carta se abre */
+.card.open .card-front {
+  display: none; /* se borra el frontal */
+}
+
+.card.open .card-inside {
+  display: flex; /* aparece el interior */
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
